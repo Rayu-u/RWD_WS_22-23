@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style/main.css" />
+    <script src="main.js" type="module"></script>
+
+    <style>
+      .center {
+        height: 100vh;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Specific */
+
+      img {
+        height: 500px;
+        width: 500px;
+        image-rendering: pixelated;
+        transform: rotate(45deg);
+      }
+
+      .button {
+        width: 250px;
+      }
+
+      .button > .button__background--passive {
+        background-color: #da291c;
+      }
+
+      .button > .button__background--active {
+        background-color: #e56960;
+      }
+
+      .button > .button__text > .button__text-background {
+        background-color: #e56960;
+      }
+
+      .button > .button__text > .button__text-line {
+        color: #fff;
+      }
+
+      /* General */
+
+      .button {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 12px;
+      }
+
+      .button > .button__background--passive,
+      .button > .button__background--active,
+      .button > .button__background--active-white,
+      .button > .button__text > .button__text-background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+
+      .button > .button__text {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        padding: 10px;
+      }
+
+      .button > .button__text > .button__text-line {
+        position: relative;
+
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <img src="test.png" />
+      <!--
+        <div class="button">
+          <div class="button__background--passive"></div>
+          <div class="button__background--active"></div>
+          <div class="button__background--active-white"></div>
+          <div class="button__text">
+            <div class="button__text-background"></div>
+            <span class="button__text-line">try</span>
+            <span class="button__text-line">again</span>
+          </div>
+        </div>
+      -->
+    </div>
+  </body>
+</html>
