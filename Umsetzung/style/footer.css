@@ -1,0 +1,32 @@
+.footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: end;
+
+  position: relative;
+  height: calc(25 * var(--unit));
+  width: 100%;
+
+  padding: 64px 0;
+}
+
+.footer > * {
+  margin-top: 32px;
+}
+
+.footer__divider {
+  position: absolute;
+  top: 0;
+  height: calc(3 * var(--unit));
+  width: 100%;
+}
+
+.footer__logo {
+  width: 90px;
+}
+
+.footer__text {
+  font-family: "TradeGothicNext", sans-serif;
+  font-size: 10px;
+}

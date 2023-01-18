@@ -1,0 +1,197 @@
+.description__grid-parent {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  height: 1500px;
+
+  overflow: hidden;
+}
+
+.description__opener-container {
+  grid-area: 1 / 1 / 2 / 11;
+}
+.description__photo-container {
+  grid-area: 2 / 2 / 5 / 10;
+}
+.description__stripes-container {
+  grid-area: 3 / 1 / 8 / 5;
+}
+.description__laundry-machine {
+  grid-area: 3 / 8 / 6 / 11;
+}
+.description__description-container {
+  grid-area: 5 / 5 / 9 / 11;
+}
+
+.description__description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+.description_header--text {
+  color: var(--black);
+  font-family: "FFGoodWebProCompressed", sans-serif;
+  font-size: 100px;
+  line-height: 100px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.description_paragraph--text {
+  color: var(--black);
+  font-family: "TradeGothicNext", sans-serif;
+  font-weight: normal;
+  font-size: 35px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.description__photo-container {
+  display: flex;
+  position: relative;
+
+  background-image: url("../assets/photos/pexels-petra-bauman-1229650.jpg");
+  background-size: cover;
+  background-position: center;
+
+  margin: 0px 50px 0px 50px;
+}
+
+.description__opener-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description__opener-text {
+  color: var(--black);
+  font-family: "FFGoodWebProCompressed", sans-serif;
+  font-size: 100px;
+  line-height: 153px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.description__stripes-container {
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+}
+
+.description__laundry-machine {
+  position: relative;
+
+  background-image: url("assets/photos/washing_machine.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  margin: 50px;
+}
+
+@media (max-width: 1389px) {
+  .description__opener-container {
+    grid-area: 1 / 1 / 2 / 11;
+  }
+  .description__photo-container {
+    grid-area: 2 / 1 / 5 / 11;
+  }
+  .description__stripes-container {
+    grid-area: 5 / 2 / 7 / 7;
+  }
+  .description__laundry-machine {
+    grid-area: 5 / 4 / 8 / 7;
+
+    margin: 5px;
+    margin-right: 15px;
+  }
+  .description__description-container {
+    grid-area: 5 / 7 / 9 / 11;
+  }
+
+  .description_header--text {
+    font-size: 60px;
+    line-height: 60px;
+  }
+  .description_paragraph--text {
+    font-size: 22px;
+  }
+  .description__opener-text {
+    font-size: 60px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1069px) {
+  .description__opener-container {
+    grid-area: 1 / 1 / 2 / 11;
+  }
+  .description__photo-container {
+    grid-area: 2 / 1 / 5 / 11;
+  }
+  .description__stripes-container {
+    grid-area: 5 / 2 / 7 / 7;
+  }
+  .description__laundry-machine {
+    grid-area: 5 / 4 / 8 / 7;
+
+    margin: 5px;
+    margin-right: 15px;
+  }
+  .description__description-container {
+    grid-area: 5 / 7 / 9 / 11;
+  }
+
+  .description_header--text {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .description_paragraph--text {
+    font-size: 18px;
+  }
+  .description__opener-text {
+    font-size: 60px;
+    line-height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .description__opener-container {
+    grid-area: 1 / 1 / 2 / 11;
+  }
+  .description__photo-container {
+    grid-area: 2 / 1 / 5 / 11;
+  }
+  .description__stripes-container {
+    grid-area: 5 / 2 / 7 / 7;
+  }
+  .description__laundry-machine {
+    grid-area: 5 / 4 / 8 / 7;
+
+    margin: 5px;
+    margin-right: 15px;
+  }
+  .description__description-container {
+    grid-area: 5 / 7 / 9 / 11;
+  }
+
+  .description_header--text {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .description_paragraph--text {
+    font-size: 18px;
+  }
+  .description__opener-text {
+    font-size: 60px;
+    line-height: 100px;
+  }
+}
