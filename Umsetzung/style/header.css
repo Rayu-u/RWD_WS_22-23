@@ -1,0 +1,109 @@
+.header {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+
+  background-color: white;
+  color: var(--black);
+  padding: 28px 64px;
+  width: 100%;
+
+  transition: top 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.header.displacement {
+  position: static;
+  opacity: 0;
+}
+
+.header.hidden {
+  top: -162px;
+}
+
+.header.raised {
+  box-shadow: 0 0 60px #0008;
+}
+
+.header__content-container {
+  position: relative;
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+}
+
+.header__logo-container > * {
+  width: 180px;
+}
+
+.header__simple-logo {
+  display: none;
+}
+
+.header__link-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  font-family: "TradeGothicNextPro", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 14px 14px 8px;
+  text-transform: uppercase;
+}
+
+.header__link:hover {
+  text-decoration: underline 2px;
+}
+
+.header__link-separator {
+  flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 14px 64px;
+  }
+
+  .header.hidden {
+    top: -106px;
+  }
+
+  .header__link-row {
+    position: static;
+  }
+
+  .header__full-logo,
+  .header__link-separator {
+    display: none;
+  }
+
+  .header__link {
+    flex: 1 1 0;
+  }
+
+  .header__simple-logo {
+    display: initial;
+  }
+}

@@ -1,0 +1,139 @@
+.floating-text {
+  position: relative;
+  width: 100%;
+
+  font-family: "FFGoodWebProCompressed", sans-serif;
+  margin: -64px 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.floating-text,
+.floating-text__copy {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.floating-text__copy:first-child {
+  animation-name: slide;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes slide {
+  from {
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.floating-text[direction="left"] .floating-text__copy:first-child {
+  animation-direction: reverse;
+}
+
+.floating-text__size {
+  width: 0;
+}
+
+.floating-text__black,
+.floating-text__black-outline,
+.floating-text__colored,
+.floating-text__colored-outline,
+.floating-text__strong,
+.floating-text__strong-outline,
+.floating-text__strong-shadow,
+.floating-text__white,
+.floating-text__white-outline {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.floating-text__black,
+.floating-text__black-outline,
+.floating-text__colored,
+.floating-text__colored-outline,
+.floating-text__strong,
+.floating-text__strong-outline,
+.floating-text__white,
+.floating-text__white-outline {
+  position: relative;
+
+  font-size: 200px;
+  line-height: 148px;
+  height: 148px;
+  padding-top: 9px;
+}
+
+.floating-text__size,
+.floating-text__strong-shadow {
+  font-size: 400px;
+  line-height: 298px;
+  height: 298px;
+  padding-top: 18px;
+}
+
+.floating-text__black,
+.floating-text__black-outline {
+  color: var(--black);
+}
+
+.floating-text__white,
+.floating-text__white-outline {
+  color: var(--white);
+}
+
+.floating-text__black-outline,
+.floating-text__colored-outline,
+.floating-text__strong-outline,
+.floating-text__white-outline {
+  -webkit-text-stroke: 2px;
+}
+
+.floating-text__black-outline,
+.floating-text__colored-outline,
+.floating-text__white-outline {
+  -webkit-text-fill-color: transparent;
+}
+
+.floating-text__strong-shadow-reposition {
+  display: flex;
+
+  user-select: none;
+  opacity: 50%;
+  width: 0;
+}
+
+.floating-text__strong-shadow {
+  background: -webkit-linear-gradient(var(--gray), var(--white), var(--gray));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(0.5, 1);
+  transform-origin: 0% 50%;
+  width: 1000px;
+}
+
+.floating-text[color="mint"] .floating-text__strong-outline {
+  -webkit-text-fill-color: var(--mint-light);
+}
+
+.floating-text[color="mint"] .floating-text__colored,
+.floating-text[color="mint"] .floating-text__colored-outline,
+.floating-text[color="mint"] .floating-text__strong,
+.floating-text[color="mint"] .floating-text__strong-outline {
+  color: var(--mint);
+}
+
+.floating-text[color="red"] .floating-text__strong-outline {
+  -webkit-text-fill-color: var(--red-light);
+}
+
+.floating-text[color="red"] .floating-text__colored,
+.floating-text[color="red"] .floating-text__colored-outline,
+.floating-text[color="red"] .floating-text__strong,
+.floating-text[color="red"] .floating-text__strong-outline {
+  color: var(--red);
+}

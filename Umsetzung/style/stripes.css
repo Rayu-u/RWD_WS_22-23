@@ -1,0 +1,61 @@
+.stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: hidden;
+}
+
+.stripes__image {
+  position: absolute;
+
+  padding-top: 0;
+  image-rendering: pixelated;
+  width: 100%;
+
+  transition: all 0.5s ease-in-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+.stripes.half-active .stripes__image {
+  margin-top: -162.5%;
+}
+
+.stripes.full-active .stripes__image {
+  margin-top: -325%;
+  transition: all 1.5s ease-in-out;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+}
+
+.stripes__rotated-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transform: rotate(45deg);
+  transform-origin: top left;
+  width: 141.43%;
+}
+
+.stripes__square {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.stripes.initial-play.half-active .stripes__image,
+.stripes.initial-play.full-active .stripes__image {
+  animation-name: from-zero;
+}
+
+@keyframes from-zero {
+  from {
+    margin-top: 0;
+  }
+  to {
+  }
+}

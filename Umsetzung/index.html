@@ -6,105 +6,652 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
+    <link rel="stylesheet" href="style/colors.css" />
     <link rel="stylesheet" href="style/main.css" />
+
+    <link rel="stylesheet" href="style/button.css" />
+    <link rel="stylesheet" href="style/disappear.css" />
+    <link rel="stylesheet" href="style/floating-text.css" />
+    <link rel="stylesheet" href="style/header.css" />
+    <link rel="stylesheet" href="style/stripes.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "button": "/modules/button.js",
+          "floating-text": "/modules/floating-text.js",
+          "header": "/modules/header.js",
+          "stripes": "/modules/stripes.js"
+        }
+      }
+    </script>
     <script src="main.js" type="module"></script>
 
-    <style>
-      .center {
-        height: 100vh;
-        width: 100%;
+    <script>
+      window.addEventListener("load", () => {
+        const recolorElements = document.querySelectorAll(".recolor");
+        const recolor = (color) => {
+          recolorElements.forEach((element) => {
+            element.setAttribute("color", color);
+          });
+        };
 
+        const whiteVariantElement = document.querySelector(
+          ".variant-selector__variant--white"
+        );
+        const darkVariantElement = document.querySelector(
+          ".variant-selector__variant--dark"
+        );
+        const colorVariantElement = document.querySelector(
+          ".variant-selector__variant--color"
+        );
+        const redVariantElement = document.querySelector(
+          ".variant-selector__variant--red"
+        );
+
+        whiteVariantElement.addEventListener("mouseenter", () => {
+          recolor("gray");
+        });
+        darkVariantElement.addEventListener("mouseenter", () => {
+          recolor("black");
+        });
+        colorVariantElement.addEventListener("mouseenter", () => {
+          recolor("mint");
+        });
+        redVariantElement.addEventListener("mouseenter", () => {
+          recolor("red");
+        });
+      });
+    </script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .view-height {
+        min-height: calc(100vh - 162px);
+      }
+
+      .view-width {
+        width: calc(100% - 256px);
+        max-width: 1300px;
+      }
+
+      @media (max-width: 1024px) {
+        .view-height {
+          min-height: calc(100vh - 106px);
+        }
+      }
+    </style>
+    <style>
+      .hero-shot {
         display: flex;
         align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        position: relative;
+        width: 100%;
+
+        background-color: var(--mint);
+        padding: 60px 0px;
+      }
+
+      .hero-shot__content {
+        display: flex;
+        align-items: end;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .hero-shot__text-container {
+        display: flex;
+        flex-direction: column;
+
+        flex: 1 1 0;
+        margin-right: 64px;
+      }
+
+      .hero-shot__text {
+        color: var(--white);
+        font-family: "FFGoodWebProCompressed", sans-serif;
+        font-size: calc(40px + 6.5 * var(--unit));
+        line-height: calc(22.22px + 7.65 * var(--unit));
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .hero-shot__stripes-container {
+        position: relative;
+
+        height: calc(150px + 7.5 * var(--unit));
+        width: calc(200px + 10 * var(--unit));
+
+        flex-shrink: 0;
+        margin-top: 64px;
+      }
+
+      .hero-shot__loading-screen {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background-color: var(--mint);
+      }
+    </style>
+    <style>
+      /* Description */
+
+      .description__grid-parent {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+        height: 1500px;
+
+        overflow: hidden;
+      }
+
+      .description__opener-container {
+        grid-area: 1 / 1 / 2 / 11;
+      }
+      .description__photo-container {
+        grid-area: 2 / 2 / 5 / 10;
+      }
+      .description__stripes-container {
+        grid-area: 3 / 1 / 8 / 5;
+      }
+      .description__laundry-machine {
+        grid-area: 3 / 8 / 6 / 11;
+      }
+      .description__description-container {
+        grid-area: 5 / 5 / 9 / 11;
+      }
+
+      .description__description-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        margin-top: 100px;
+        margin-left: 20px;
+      }
+
+      .description_header--text {
+        color: var(--black);
+        font-family: "FFGoodWebProCompressed", sans-serif;
+        font-size: 100px;
+        line-height: 100px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .description_paragraph--text {
+        color: var(--black);
+        font-family: "TradeGothicNext", sans-serif;
+        font-weight: normal;
+        font-size: 35px;
+        letter-spacing: 0.02em;
+        text-align: left;
+      }
+
+      .description__photo-container {
+        display: flex;
+        position: relative;
+
+        background-image: url("assets/photos/pexels-petra-bauman-1229650.jpg");
+        background-size: cover;
+        background-position: center;
+
+        margin: 0px 50px 0px 50px;
+      }
+
+      .description__opener-container {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
       }
 
-      /* Specific */
-
-      img {
-        height: 500px;
-        width: 500px;
-        image-rendering: pixelated;
-        transform: rotate(45deg);
+      .description__opener-text {
+        color: var(--black);
+        font-family: "FFGoodWebProCompressed", sans-serif;
+        font-size: 100px;
+        line-height: 153px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        text-align: center;
       }
 
-      .button {
-        width: 250px;
-      }
-
-      .button > .button__background--passive {
-        background-color: #da291c;
-      }
-
-      .button > .button__background--active {
-        background-color: #e56960;
-      }
-
-      .button > .button__text > .button__text-background {
-        background-color: #e56960;
-      }
-
-      .button > .button__text > .button__text-line {
-        color: #fff;
-      }
-
-      /* General */
-
-      .button {
+      .description__stripes-container {
         position: relative;
 
+        height: 100%;
+        width: 100%;
+      }
+
+      .description__laundry-machine {
+        position: relative;
+
+        background-image: url("assets/photos/washing_machine.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        margin: 50px;
+      }
+
+      @media (max-width: 1389px) {
+        .description__opener-container {
+          grid-area: 1 / 1 / 2 / 11;
+        }
+        .description__photo-container {
+          grid-area: 2 / 1 / 5 / 11;
+        }
+        .description__stripes-container {
+          grid-area: 5 / 2 / 7 / 7;
+        }
+        .description__laundry-machine {
+          grid-area: 5 / 4 / 8 / 7;
+
+          margin: 5px;
+          margin-right: 15px;
+        }
+        .description__description-container {
+          grid-area: 5 / 7 / 9 / 11;
+        }
+
+        .description_header--text {
+          font-size: 60px;
+          line-height: 60px;
+        }
+        .description_paragraph--text {
+          font-size: 22px;
+        }
+        .description__opener-text {
+          font-size: 60px;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1069px) {
+        .description__opener-container {
+          grid-area: 1 / 1 / 2 / 11;
+        }
+        .description__photo-container {
+          grid-area: 2 / 1 / 5 / 11;
+        }
+        .description__stripes-container {
+          grid-area: 5 / 2 / 7 / 7;
+        }
+        .description__laundry-machine {
+          grid-area: 5 / 4 / 8 / 7;
+
+          margin: 5px;
+          margin-right: 15px;
+        }
+        .description__description-container {
+          grid-area: 5 / 7 / 9 / 11;
+        }
+
+        .description_header--text {
+          font-size: 40px;
+          line-height: 40px;
+        }
+        .description_paragraph--text {
+          font-size: 18px;
+        }
+        .description__opener-text {
+          font-size: 60px;
+          line-height: 100px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .description__opener-container {
+          grid-area: 1 / 1 / 2 / 11;
+        }
+        .description__photo-container {
+          grid-area: 2 / 1 / 5 / 11;
+        }
+        .description__stripes-container {
+          grid-area: 5 / 2 / 7 / 7;
+        }
+        .description__laundry-machine {
+          grid-area: 5 / 4 / 8 / 7;
+
+          margin: 5px;
+          margin-right: 15px;
+        }
+        .description__description-container {
+          grid-area: 5 / 7 / 9 / 11;
+        }
+
+        .description_header--text {
+          font-size: 40px;
+          line-height: 40px;
+        }
+        .description_paragraph--text {
+          font-size: 18px;
+        }
+        .description__opener-text {
+          font-size: 60px;
+          line-height: 100px;
+        }
+      }
+    </style>
+    <style>
+      .variant-selector {
         display: flex;
         align-items: center;
         flex-direction: column;
 
-        padding: 12px;
+        padding: 32px 0;
+        width: 100%;
       }
 
-      .button > .button__background--passive,
-      .button > .button__background--active,
-      .button > .button__background--active-white,
-      .button > .button__text > .button__text-background {
+      .variant-selector[color="gray"] {
+        background-color: var(--gray);
+      }
+
+      .variant-selector[color="black"] {
+        background-color: var(--black);
+        color: var(--black-text);
+      }
+
+      .variant-selector[color="mint"] {
+        background-color: var(--mint);
+      }
+
+      .variant-selector[color="red"] {
+        background-color: var(--red);
+      }
+
+      .variant-selector__title--first-row,
+      .variant-selector__title--second-row {
+        color: var(--white);
+        font-family: "FFGoodWebProCompressed", sans-serif;
+        font-size: calc(6 * var(--unit));
+        text-transform: uppercase;
+      }
+
+      .variant-selector__variants {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .variant-selector__variant {
+        cursor: pointer;
+        font-family: "TradeGothicNextPro", sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+      }
+    </style>
+    <style>
+      .variant-info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        position: relative;
+        width: 100%;
+      }
+
+      .variant-info__quote-section {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        margin: 0 32px 32px -32px;
+      }
+
+      .variant-info__quote-section > * {
+        margin: 32px 0 0 32px;
+      }
+
+      .variant-info__quote-avatar-container {
+        height: 200px;
+        width: 200px;
+      }
+
+      .variant-info__quote-avatar {
+        position: relative;
+        top: -13.38px;
+        left: -100px;
+        width: 400px;
+
+        clip-path: ellipse(100px 100px at 50% 40%);
+      }
+
+      .variant-info__quote-text {
+        color: var(--mint-dark);
+        font-family: "FFGoodWebProCompressed", sans-serif;
+        font-size: 66px;
+        text-transform: uppercase;
+        width: 510px;
+      }
+
+      .variant-info__quote-text[color="gray"] {
+        color: var(--gray);
+      }
+
+      .variant-info__quote-text[color="black"] {
+        color: var(--black);
+      }
+
+      .variant-info__quote-text[color="mint"] {
+        color: var(--mint);
+      }
+
+      .variant-info__quote-text[color="red"] {
+        color: var(--red);
+      }
+
+      .variant-info__product-section {
+        display: flex;
+        flex-direction: column;
+
+        position: relative;
+        width: 100%;
+      }
+
+      .variant-info__product-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         position: absolute;
+        top: 0;
+        right: 0;
         bottom: 0;
         left: 0;
-        right: 0;
-        top: 0;
       }
 
-      .button > .button__text {
+      .variant-info__product {
         position: relative;
-
+        height: calc(150px + 7.5 * var(--unit));
+        width: calc(200px + 10 * var(--unit));
+      }
+    </style>
+    <style>
+      .footer {
         display: flex;
         align-items: center;
         flex-direction: column;
+        justify-content: end;
 
-        padding: 10px;
+        position: relative;
+        height: calc(25 * var(--unit));
+        width: 100%;
+
+        padding: 64px 0;
       }
 
-      .button > .button__text > .button__text-line {
-        position: relative;
+      .footer > * {
+        margin-top: 32px;
+      }
 
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        text-transform: uppercase;
+      .footer__divider {
+        position: absolute;
+        top: 0;
+        height: calc(3 * var(--unit));
+        width: 100%;
+      }
+
+      .footer__logo {
+        width: 90px;
+      }
+
+      .footer__text {
+        font-family: "TradeGothicNext", sans-serif;
+        font-size: 10px;
       }
     </style>
   </head>
   <body>
-    <div class="center">
-      <img src="test.png" />
-      <!--
-        <div class="button">
-          <div class="button__background--passive"></div>
-          <div class="button__background--active"></div>
-          <div class="button__background--active-white"></div>
-          <div class="button__text">
-            <div class="button__text-background"></div>
-            <span class="button__text-line">try</span>
-            <span class="button__text-line">again</span>
+    <!-- Hero Shot -->
+    <div class="hero-shot view-height">
+      <div class="hero-shot__content view-width">
+        <div class="hero-shot__text-container">
+          <div class="hero-shot__text">A friend won't</div>
+          <div class="hero-shot__text">leave you</div>
+          <div class="hero-shot__text">hanging</div>
+        </div>
+        <div class="hero-shot__stripes-container">
+          <div class="stripes half-active" color="red"></div>
+        </div>
+      </div>
+      <div class="hero-shot__loading-screen disappear disappear__750ms"></div>
+      <div class="stripes initial-play full-active" color="mint"></div>
+    </div>
+
+    <!-- Presentation & Description -->
+    <div class="description__grid-parent view-width">
+      <div class="description__opener-container">
+        <div class="description__opener-text">
+          Fisherman's Freshener is that friend
+        </div>
+      </div>
+      <div class="description__stripes-container">
+        <div class="stripes half-active" color="mint"></div>
+      </div>
+      <div class="description__photo-container"></div>
+      <div class="description__laundry-machine"></div>
+      <div class="description__description-container">
+        <div class="description_header--text">Stark. Verlässlich.</div>
+        <div class="description_header--text">Auch im Haushalt.</div>
+        <div class="description_paragraph--text">
+          Wer hätte es gedacht? Wir bei Fisherman's Friend können auch weich.
+          Deine Kleidung hat einen Friend verdient - Fisherman's Friend. Damit
+          wird sie weich, frisch und riecht wunderbar. Aber versteh' uns nicht
+          falsch. Der Frischekick der Fisherman's Freshener Sticks hat es auf
+          jeden Fall in sich. Bist du bereit für die Challenge? Frische,
+          Weichheit, allzeit bereite Wäsche - jetzt mit Fisherman's Friend.
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant Selector -->
+    <div class="variant-selector view-height recolor" color="mint">
+      <div class="view-width">
+        <div class="variant-selector__title--first-row">Wähle deinen</div>
+        <div class="variant-selector__title--second-row">Wäschetyp</div>
+        <div class="variant-selector__variants">
+          <div
+            class="variant-selector__variant variant-selector__variant--white"
+          >
+            Helle Wäsche
+          </div>
+          <div
+            class="variant-selector__variant variant-selector__variant--dark"
+          >
+            Dunkle Wäsche
+          </div>
+          <div
+            class="variant-selector__variant variant-selector__variant--color"
+          >
+            Bunte Wäsche
+          </div>
+          <div class="variant-selector__variant variant-selector__variant--red">
+            Rote Wäsche
           </div>
         </div>
-      -->
+      </div>
+    </div>
+
+    <!-- Variant Info -->
+    <div class="variant-info view-height">
+      <div class="variant-info__quote-section">
+        <div class="variant-info__quote-avatar-container">
+          <img
+            class="variant-info__quote-avatar"
+            src="assets/photos/pexels-andrea-piacquadio-3785110.jpg"
+            alt="quotee picture"
+          />
+        </div>
+        <div class="variant-info__quote-text recolor">
+          "Die sind ja voll easy. Und das Ergebnis is' auch umhauend. Nix für
+          sensitive Näschen!"
+        </div>
+      </div>
+      <div class="variant-info__product-section">
+        <div
+          class="floating-text recolor"
+          color="mint"
+          direction="left"
+          seconds-per-word="5"
+        >
+          <div class="floating-text__colored">probier's aus</div>
+          <div class="floating-text__colored-outline">probier's aus</div>
+        </div>
+        <div
+          class="floating-text recolor"
+          color="mint"
+          direction="right"
+          seconds-per-word="4"
+        >
+          <div class="floating-text__colored">Fisherman's Freshener</div>
+          <div class="floating-text__colored-outline">
+            Fisherman's Freshener
+          </div>
+        </div>
+        <div
+          class="floating-text recolor"
+          color="mint"
+          direction="left"
+          seconds-per-word="5"
+        >
+          <div class="floating-text__colored">stark</div>
+          <div class="floating-text__colored-outline">verlässlich</div>
+          <div class="floating-text__colored">einfach</div>
+          <div class="floating-text__colored-outline">stark</div>
+          <div class="floating-text__colored">verlässlich</div>
+          <div class="floating-text__colored-outline">einfach</div>
+        </div>
+        <div class="variant-info__product-container">
+          <div class="variant-info__product">
+            <div class="stripes half-active" color="red"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer__divider">
+        <div class="stripes half-active" color="gray"></div>
+      </div>
+      <img class="footer__logo" alt="" src="assets/logos/full.svg" />
+      <div class="footer__text">@2023 Laura Fabricius</div>
     </div>
   </body>
 </html>

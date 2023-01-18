@@ -1,0 +1,22 @@
+:root {
+  --black: #1f1e21;
+  --black-text: var(--white);
+  --gray: #939394;
+  --gray-transparent: #93939400;
+  --gray-text: var(--white);
+  --white: #fff;
+  --white-text: var(--black);
+
+  --mint-dark: #47d7ac;
+  --mint: #7ee3c5;
+  --mint-text: var(--white);
+  --mint-light: #a7e6d7;
+  --mint-light-transparent: #a7e6d700;
+  --mint-light-text: var(--white);
+
+  --red: #da291c;
+  --red-text: var(--white);
+  --red-light: #e56960;
+  --red-light-transparent: #e5696000;
+  --red-light-text: var(--white);
+}

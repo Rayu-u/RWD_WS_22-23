@@ -1,5 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300;500&display=swap");
+@font-face {
+  font-family: "FFGoodWebProCompressed";
+  src: url("../assets/fonts/ffgoodwebprocompressedultra.woff2");
+}
+
+@font-face {
+  font-family: "TradeGothicNextPro";
+  src: url("../assets/fonts/tradegothicnextltpro-lt.woff2");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "TradeGothicNextPro";
+  src: url("../assets/fonts/tradegothicnextltpro-rg.woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "TradeGothicNextPro";
+  src: url("../assets/fonts/tradegothicnextltpro-bd.woff2");
+  font-weight: bold;
+}
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+:root {
+  --unit: calc(min(20px, 1.42857143vw));
 }

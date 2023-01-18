@@ -1,0 +1,81 @@
+.button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 12px;
+  cursor: pointer;
+}
+
+.button__background,
+.button__text-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.button__text-background {
+  transition: background-color 0.5s ease-in-out;
+}
+
+.button__text-container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 6px 10px 3px;
+}
+
+.button__text-line {
+  position: relative;
+
+  color: var(--white);
+  font-family: "TradeGothicNextPro", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+.button[color="gray"] .button__background {
+  background-color: var(--gray);
+}
+
+.button[color="mint"] .button__background {
+  background-color: var(--mint-dark);
+}
+
+.button[color="red"] .button__background {
+  background-color: var(--red);
+}
+
+.button[color="gray"] .button__text-background {
+  background-color: var(--gray-transparent);
+}
+
+.button[color="mint"] .button__text-background {
+  background-color: var(--mint-light-transparent);
+}
+
+.button[color="red"] .button__text-background {
+  background-color: var(--red-light-transparent);
+}
+
+.button[color="gray"]:hover .button__text-background {
+  background-color: var(--gray);
+}
+
+.button[color="mint"]:hover .button__text-background {
+  background-color: var(--mint-light);
+}
+
+.button[color="red"]:hover .button__text-background {
+  background-color: var(--red-light);
+}
