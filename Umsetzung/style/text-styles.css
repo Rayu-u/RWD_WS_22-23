@@ -1,0 +1,10 @@
+.text--upper {
+  font-family: "FFGoodWebProCompressed", sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.text--main {
+  font-family: "TradeGothicNextPro", sans-serif;
+  letter-spacing: 0.02em;
+}

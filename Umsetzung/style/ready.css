@@ -1,0 +1,154 @@
+.ready {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.ready__section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+
+  background-color: var(--mint);
+  order: 2;
+}
+
+.ready__content {
+  display: flex;
+  align-items: stretch;
+
+  padding-top: 32px;
+}
+
+.ready__text {
+  color: var(--white);
+  font-size: calc(60px + 3 * var(--unit));
+  margin: 0 32px 32px 0;
+}
+
+.ready__text > * {
+  margin-bottom: calc(-10px - var(--unit));
+}
+
+.ready__outline-text {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-fill-color: transparent;
+}
+
+.ready__product-layout-column {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 32px;
+}
+
+.ready__product-layout-row {
+  display: flex;
+  flex-direction: row;
+
+  flex-grow: 1;
+  height: 0;
+}
+
+.ready__product-container {
+  position: relative;
+
+  flex-grow: 1;
+  width: 0;
+}
+
+.ready__product--invisible {
+  opacity: 0;
+}
+
+.ready__product--red {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.ready__product--black {
+  position: absolute;
+  top: 33.33%;
+  left: 33.33%;
+}
+
+.ready__product--white {
+  position: absolute;
+  top: 66.67%;
+  left: 66.67%;
+}
+
+.ready__product--colored {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+}
+
+.ready__any-day-container {
+  position: relative;
+
+  margin: 64px 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .ready__content {
+    flex-direction: row;
+  }
+
+  .ready__content > * {
+    flex: 1 1 0;
+  }
+
+  .ready__product-layout-column {
+    height: 400px;
+  }
+
+  .ready__product {
+    height: 300px;
+  }
+
+  .ready__any-day-container {
+    order: 3;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ready__content {
+    flex-direction: column;
+  }
+
+  .ready__product-layout-column {
+    height: 350px;
+  }
+
+  .ready__product {
+    height: 300px;
+  }
+
+  .ready__any-day-container {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .ready__content {
+    flex-direction: column;
+  }
+
+  .ready__product-layout-column {
+    height: 300px;
+  }
+
+  .ready__product {
+    height: 250px;
+  }
+
+  .ready__any-day-container {
+    order: 1;
+  }
+}

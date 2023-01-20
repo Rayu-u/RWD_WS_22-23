@@ -1,17 +1,21 @@
-import { colors, generateStripesElement } from "stripes";
+import {
+  colors,
+  developStripesElement,
+  generateStripesElement,
+} from "./stripes.js";
 
-export const generateButtonElement = (color, text) => {
-  const buttonElement = document.createElement("div");
-  buttonElement.classList("button");
-  buttonElement.setAttribute("color", color);
-  buttonElement.setAttribute("text", text);
+// export const generateButtonElement = (color, text) => {
+//   const buttonElement = document.createElement("div");
+//   buttonElement.classList("button");
+//   buttonElement.setAttribute("color", color);
+//   buttonElement.setAttribute("text", text);
 
-  developButtonElement(buttonElement);
-  buttonElement.classList.remove("developed");
-  buttonElement.classList.add("generated");
+//   developButtonElement(buttonElement);
+//   buttonElement.classList.remove("developed");
+//   buttonElement.classList.add("generated");
 
-  return buttonElement;
-};
+//   return buttonElement;
+// };
 
 const developButtonElement = (buttonElement) => {
   const color = buttonElement.getAttribute("color");
@@ -47,6 +51,9 @@ const developButtonElement = (buttonElement) => {
   buttonElement.appendChild(backgroundElement);
   buttonElement.appendChild(stripesElement);
   buttonElement.appendChild(textContainerElement);
+
+  developStripesElement(stripesElement);
+
   buttonElement.addEventListener("mouseenter", () => {
     stripesElement.classList.add("half-active");
   });

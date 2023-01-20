@@ -5,7 +5,7 @@
   justify-content: end;
 
   position: relative;
-  height: calc(25 * var(--unit));
+  height: 300px;
   width: 100%;
 
   padding: 64px 0;

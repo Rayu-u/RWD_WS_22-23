@@ -35,10 +35,9 @@
   text-transform: uppercase;
 }
 
-.hero-shot__stripes-container {
+.hero-shot__product {
   position: relative;
 
-  height: calc(150px + 7.5 * var(--unit));
   width: calc(200px + 10 * var(--unit));
 
   flex-shrink: 0;

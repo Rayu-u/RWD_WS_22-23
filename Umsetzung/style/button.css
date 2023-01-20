@@ -29,7 +29,7 @@
   align-items: center;
   flex-direction: column;
 
-  padding: 6px 10px 3px;
+  padding: 4px 10px 6px;
 }
 
 .button__text-line {
@@ -48,34 +48,46 @@
   background-color: var(--gray);
 }
 
-.button[color="mint"] .button__background {
-  background-color: var(--mint-dark);
-}
-
-.button[color="red"] .button__background {
-  background-color: var(--red);
-}
-
 .button[color="gray"] .button__text-background {
   background-color: var(--gray-transparent);
-}
-
-.button[color="mint"] .button__text-background {
-  background-color: var(--mint-light-transparent);
-}
-
-.button[color="red"] .button__text-background {
-  background-color: var(--red-light-transparent);
 }
 
 .button[color="gray"]:hover .button__text-background {
   background-color: var(--gray);
 }
 
+.button[color="mint"] .button__background {
+  background-color: var(--mint-dark);
+}
+
+.button[color="mint"] .button__text-background {
+  background-color: var(--mint-light-transparent);
+}
+
 .button[color="mint"]:hover .button__text-background {
   background-color: var(--mint-light);
 }
 
+.button[color="red"] .button__background {
+  background-color: var(--red);
+}
+
+.button[color="red"] .button__text-background {
+  background-color: var(--red-light-transparent);
+}
+
 .button[color="red"]:hover .button__text-background {
   background-color: var(--red-light);
+}
+
+.button[color="purple"] .button__background {
+  background-color: var(--purple);
+}
+
+.button[color="purple"] .button__text-background {
+  background-color: var(--purple);
+}
+
+.button[color="purple"]:hover .button__text-background {
+  background-color: var(--purple);
 }

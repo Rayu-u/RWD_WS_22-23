@@ -137,3 +137,14 @@
 .floating-text[color="red"] .floating-text__strong-outline {
   color: var(--red);
 }
+
+.floating-text[color="purple"] .floating-text__strong-outline {
+  -webkit-text-fill-color: var(--purple-light);
+}
+
+.floating-text[color="purple"] .floating-text__colored,
+.floating-text[color="purple"] .floating-text__colored-outline,
+.floating-text[color="purple"] .floating-text__strong,
+.floating-text[color="purple"] .floating-text__strong-outline {
+  color: var(--purple);
+}

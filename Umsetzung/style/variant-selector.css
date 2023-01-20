@@ -3,12 +3,9 @@
   align-items: center;
   flex-direction: column;
 
+  overflow: hidden;
   padding: 32px 0;
   width: 100%;
-}
-
-.variant-selector[color="gray"] {
-  background-color: var(--gray);
 }
 
 .variant-selector[color="black"] {
@@ -16,19 +13,36 @@
   color: var(--black-text);
 }
 
-.variant-selector[color="mint"] {
-  background-color: var(--mint);
+.variant-selector[color="gray"] {
+  background-color: var(--gray);
 }
 
 .variant-selector[color="red"] {
-  background-color: var(--red);
+  background-color: var(--red-light);
+}
+
+.variant-selector[color="purple"] {
+  background-color: var(--purple-light);
+}
+
+.variant-selector__content {
+  display: flex;
+  flex-direction: row;
+}
+
+.variant-selector__content > * {
+  flex: 1 1 0;
+}
+
+.variant-selector__text {
+  margin: 0 32px 32px 0;
 }
 
 .variant-selector__title--first-row,
 .variant-selector__title--second-row {
   color: var(--white);
   font-family: "FFGoodWebProCompressed", sans-serif;
-  font-size: calc(6 * var(--unit));
+  font-size: calc(60px + 3 * var(--unit));
   text-transform: uppercase;
 }
 
@@ -43,6 +57,26 @@
   font-family: "TradeGothicNextPro", sans-serif;
   font-size: 15px;
   font-weight: bold;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
   text-transform: uppercase;
+}
+
+.variant-selector__variant.selected {
+  border-bottom: 2px solid;
+}
+
+.variant-selector__shirt-container {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .variant-selector__content {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .variant-selector__content {
+    flex-direction: column;
+  }
 }

@@ -19,4 +19,10 @@
   --red-light: #e56960;
   --red-light-transparent: #e5696000;
   --red-light-text: var(--white);
+
+  --purple: #c6a1cf;
+  --purple-text: var(--white);
+  --purple-light: #d7bddd;
+  --purple-light-transparent: #a77bca00;
+  --purple-light-text: var(--white);
 }

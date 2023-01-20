@@ -1,7 +1,10 @@
 export const colors = {
+  black: "assets/stripes/colored--black.png",
   gray: "assets/stripes/colored--gray.png",
+  lightPurple: "assets/stripes/colored--light-purple.png",
   mint: "assets/stripes/colored--light-mint.png",
   red: "assets/stripes/colored--light-red.png",
+  purple: "assets/stripes/colored--purple.png",
 };
 const whiteAsset = "assets/stripes/white.png";
 
@@ -10,14 +13,10 @@ export const generateStripesElement = (color) => {
   stripesElement.classList.add("stripes");
   stripesElement.setAttribute("color", color);
 
-  developStripesElement(stripesElement);
-  stripesElement.classList.remove("developed");
-  stripesElement.classList.add("generated");
-
   return stripesElement;
 };
 
-const developStripesElement = (stripesElement) => {
+export const developStripesElement = (stripesElement) => {
   const color = stripesElement.getAttribute("color");
   if (!(color in colors)) {
     console.error(
@@ -50,6 +49,11 @@ const developStripesElement = (stripesElement) => {
   stripesElement.appendChild(squareElement);
 
   stripesElement.classList.add("developed");
+};
+
+export const recolorStripesElement = (stripesElement, color) => {
+  stripesElement.querySelector(".stripes__image:first-child").src =
+    colors[color];
 };
 
 window.addEventListener("load", () => {

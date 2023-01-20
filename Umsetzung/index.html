@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="style/floating-text.css" />
     <link rel="stylesheet" href="style/header.css" />
     <link rel="stylesheet" href="style/stripes.css" />
+    <link rel="stylesheet" href="style/text-styles.css" />
 
+    <link rel="stylesheet" href="style/call-to-action.css" />
+    <link rel="stylesheet" href="style/characteristics.css" />
     <link rel="stylesheet" href="style/description.css" />
     <link rel="stylesheet" href="style/footer.css" />
     <link rel="stylesheet" href="style/hero-shot.css" />
+    <link rel="stylesheet" href="style/late-product-info.css" />
+    <link rel="stylesheet" href="style/ready.css" />
     <link rel="stylesheet" href="style/variant-info.css" />
     <link rel="stylesheet" href="style/variant-selector.css" />
 
@@ -26,13 +31,26 @@
     <script src="modules/header.js" type="module"></script>
     <script src="modules/stripes.js" type="module"></script>
 
-    <script>
+    <script type="module">
+      import {
+        developStripesElement,
+        generateStripesElement,
+        recolorStripesElement,
+      } from "./modules/stripes.js";
+
       window.addEventListener("load", () => {
-        const recolorElements = document.querySelectorAll(".recolor");
+        const recolorElements = document.querySelectorAll(
+          ".recolor:not(.stripes)"
+        );
+        const recolorStripesElements =
+          document.querySelectorAll(".recolor.stripes");
         const recolor = (color) => {
           recolorElements.forEach((element) => {
             element.setAttribute("color", color);
           });
+          recolorStripesElements.forEach((stripesElement) =>
+            recolorStripesElement(stripesElement, color)
+          );
         };
 
         const whiteVariantElement = document.querySelector(
@@ -47,18 +65,82 @@
         const redVariantElement = document.querySelector(
           ".variant-selector__variant--red"
         );
+        const variantElements = [
+          whiteVariantElement,
+          darkVariantElement,
+          colorVariantElement,
+          redVariantElement,
+        ];
 
-        whiteVariantElement.addEventListener("mouseenter", () => {
+        const selectOption = (variantElement) => {
+          variantElements.forEach((element) =>
+            element.classList.remove("selected")
+          );
+          variantElement.classList.add("selected");
+        };
+
+        const sleep = (duration) =>
+          new Promise((resolve) => setTimeout(resolve, duration));
+        const shirtContainerElement = document.querySelector(
+          ".variant-selector__shirt-container"
+        );
+        const shirtElement = document.querySelector(".variant-selector__shirt");
+        const cleanAnimation = async (
+          dirtyImagePath,
+          cleanImagePath,
+          color
+        ) => {
+          shirtElement.src = dirtyImagePath;
+          await sleep(1000);
+
+          const stripesElement = generateStripesElement(color);
+          stripesElement.classList.add("initial-play");
+          stripesElement.classList.add("full-active");
+          shirtContainerElement.appendChild(stripesElement);
+          developStripesElement(stripesElement);
+          await sleep(750);
+
+          shirtElement.src = cleanImagePath;
+          await sleep(750);
+
+          shirtContainerElement.removeChild(stripesElement);
+        };
+
+        whiteVariantElement.addEventListener("mouseenter", async () => {
           recolor("gray");
+          selectOption(whiteVariantElement);
+          await cleanAnimation(
+            "assets/shirts/Shirt__white--dirty.png",
+            "assets/shirts/Shirt__white--clean.png",
+            "gray"
+          );
         });
-        darkVariantElement.addEventListener("mouseenter", () => {
+        darkVariantElement.addEventListener("mouseenter", async () => {
           recolor("black");
+          selectOption(darkVariantElement);
+          await cleanAnimation(
+            "assets/shirts/Shirt__black--dirty.png",
+            "assets/shirts/Shirt__black--clean.png",
+            "black"
+          );
         });
-        colorVariantElement.addEventListener("mouseenter", () => {
-          recolor("mint");
+        colorVariantElement.addEventListener("mouseenter", async () => {
+          recolor("purple");
+          selectOption(colorVariantElement);
+          await cleanAnimation(
+            "assets/shirts/Shirt__purple--dirty.png",
+            "assets/shirts/Shirt__purple--clean.png",
+            "lightPurple"
+          );
         });
-        redVariantElement.addEventListener("mouseenter", () => {
+        redVariantElement.addEventListener("mouseenter", async () => {
           recolor("red");
+          selectOption(redVariantElement);
+          await cleanAnimation(
+            "assets/shirts/Shirt__red--dirty.png",
+            "assets/shirts/Shirt__red--clean.png",
+            "red"
+          );
         });
       });
     </script>
@@ -69,18 +151,34 @@
         align-items: center;
       }
 
-      .view-height {
-        min-height: calc(100vh - 162px);
+      @media (min-width: 1024px) {
+        .view-height {
+          min-height: calc(100vh - 162px);
+        }
+
+        .view-width {
+          width: calc(100% - 256px);
+          max-width: 1300px;
+        }
       }
 
-      .view-width {
-        width: calc(100% - 256px);
-        max-width: 1300px;
-      }
-
-      @media (max-width: 1024px) {
+      @media (min-width: 768px) and (max-width: 1024px) {
         .view-height {
           min-height: calc(100vh - 106px);
+        }
+
+        .view-width {
+          width: calc(100% - 128px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .view-height {
+          min-height: calc(100vh - 106px);
+        }
+
+        .view-width {
+          width: calc(100% - 64px);
         }
       }
     </style>
@@ -94,9 +192,11 @@
           <div class="hero-shot__text">leave you</div>
           <div class="hero-shot__text">hanging</div>
         </div>
-        <div class="hero-shot__stripes-container">
-          <div class="stripes half-active" color="red"></div>
-        </div>
+        <img
+          class="hero-shot__product"
+          alt="Produktverpackung"
+          src="assets/product/packaging_Mint.png"
+        />
       </div>
       <div class="hero-shot__loading-screen disappear disappear__750ms"></div>
       <div class="stripes initial-play full-active" color="mint"></div>
@@ -128,53 +228,247 @@
       </div>
     </div>
 
-    <!-- Variant Selector -->
-    <div class="variant-selector view-height recolor" color="mint">
-      <div class="view-width">
-        <div class="variant-selector__title--first-row">Wähle deinen</div>
-        <div class="variant-selector__title--second-row">Wäschetyp</div>
-        <div class="variant-selector__variants">
-          <div
-            class="variant-selector__variant variant-selector__variant--white"
-          >
-            Helle Wäsche
-          </div>
-          <div
-            class="variant-selector__variant variant-selector__variant--dark"
-          >
-            Dunkle Wäsche
-          </div>
-          <div
-            class="variant-selector__variant variant-selector__variant--color"
-          >
-            Bunte Wäsche
-          </div>
-          <div class="variant-selector__variant variant-selector__variant--red">
-            Rote Wäsche
-          </div>
+    <!-- Characteristics -->
+    <div class="characteristics">
+      <div
+        class="characteristics__stripes stripes half-active"
+        color="mint"
+      ></div>
+      <div class="characteristics__content view-width">
+        <div class="characteristics__title text--upper">
+          It's&nbsp;
+          <span class="characteristics__strong">easy&nbsp;</span>
+          (going)
+        </div>
+        <div class="characteristics__body text--main">
+          Wie viel brauchst du nochmal davon? Ach &ndash; einfach rein damit! Du
+          wirst sehen, Fisherman's Freshener ist super leicht zu benutzen. Rein
+          damit und watch the Magic happen.
+        </div>
+        <div class="characteristics__divider"></div>
+        <div class="characteristics__title text--upper">
+          It lets you feel a&nbsp;little&nbsp;
+          <span class="characteristics__strong">stronger</span>
+        </div>
+        <div class="characteristics__body text--main">
+          Fisherman's Freshener powered durch bis zum bitteren Ende &ndash; mit
+          den 24 Stück in einer Packung verlassen sie (fast) nie deine Seite.
+          Und wenn doch &ndash; du weißt wo du sie finden kannst. Sie sind
+          einfach da, wenn du sie brauchst. Und dann so stark, dass sie dich
+          umhauen &ndash; darauf kannst du zählen.
+        </div>
+        <div class="characteristics__divider"></div>
+        <div class="characteristics__title text--upper">
+          It stays&nbsp;
+          <span class="characteristics__strong">responsible</span>
+        </div>
+        <div class="characteristics__body text--main">
+          Fisherman's Friend weiß: Du willst den Frischekick &ndash; aber nicht
+          auf Kosten der Umwelt. Deshalb: Die sind alle naturally sourced und
+          die Verpackung zu 99% Plastic Free. Verlass dich also auf sie &ndash;
+          wie auf einen guten Freund.
         </div>
       </div>
     </div>
 
-    <!-- Variant Info -->
-    <div class="variant-info view-height">
-      <div class="variant-info__quote-section">
-        <div class="variant-info__quote-avatar-container">
+    <!-- Ready and "Any day" -->
+    <div class="ready">
+      <div class="ready__section">
+        <div class="ready__content view-width">
+          <div class="ready__text">
+            <div class="ready__solid-text text--upper">frisch</div>
+            <div class="ready__solid-text text--upper">kräftig</div>
+            <div class="ready__outline-text text--upper">
+              allzeit&nbsp;bereit
+            </div>
+          </div>
+          <div class="ready__product-layout-column">
+            <div class="ready__product-layout-row">
+              <div class="ready__product-container">
+                <img
+                  class="ready__product ready__product--red"
+                  src="assets/product/Soap_rot.png"
+                  alt=""
+                />
+                <img
+                  class="ready__product ready__product--black"
+                  src="assets/product/Soap_schwarz.png"
+                  alt=""
+                />
+                <img
+                  class="ready__product ready__product--white"
+                  src="assets/product/Soap_weiß.png"
+                  alt=""
+                />
+                <img
+                  class="ready__product ready__product--colored"
+                  src="assets/product/Soap_bunt.png"
+                  alt=""
+                />
+              </div>
+              <img
+                class="ready__product ready__product--invisible"
+                src="assets/product/Soap_weiß.png"
+                alt=""
+              />
+            </div>
+            <img
+              class="ready__product ready__product--invisible"
+              src="assets/product/Soap_weiß.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="ready__any-day-container">
+        <div
+          class="floating-text"
+          color="mint"
+          direction="left"
+          seconds-per-word="12"
+        >
+          <div class="floating-text__colored">any day</div>
+          <div class="floating-text__colored-outline">any day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant Selector -->
+    <div class="variant-selector recolor" color="purple">
+      <div class="variant-selector__content view-width">
+        <div class="variant-selector__text">
+          <div class="variant-selector__title--first-row">Wähle deinen</div>
+          <div class="variant-selector__title--second-row">Wäschetyp</div>
+          <div class="variant-selector__variants">
+            <div
+              class="variant-selector__variant variant-selector__variant--white"
+            >
+              Helle Wäsche
+            </div>
+            <div
+              class="variant-selector__variant variant-selector__variant--dark"
+            >
+              Dunkle Wäsche
+            </div>
+            <div
+              class="variant-selector__variant variant-selector__variant--color"
+            >
+              Bunte Wäsche
+            </div>
+            <div
+              class="variant-selector__variant variant-selector__variant--red"
+            >
+              Rote Wäsche
+            </div>
+          </div>
+        </div>
+        <div class="variant-selector__shirt-container">
           <img
-            class="variant-info__quote-avatar"
-            src="assets/photos/pexels-andrea-piacquadio-3785110.jpg"
-            alt="quotee picture"
+            class="variant-selector__shirt"
+            src="assets/shirts/Shirt__purple--clean.png"
+            alt="Hemd für die Reinigungsanimation"
           />
         </div>
-        <div class="variant-info__quote-text recolor">
+      </div>
+    </div>
+
+    <!-- Variant info -->
+    <div class="variant-info view-width recolor" color="purple">
+      <div class="variant-info__title variant-info__title--white text--upper">
+        helle Wäsche
+        <img
+          class="variant-info__product"
+          alt=""
+          src="assets/product/Soap_weiß.png"
+        />
+      </div>
+      <div class="variant-info__title variant-info__title--dark text--upper">
+        dunkle Wäsche
+        <img
+          class="variant-info__product"
+          alt=""
+          src="assets/product/Soap_schwarz.png"
+        />
+      </div>
+      <div class="variant-info__title variant-info__title--color text--upper">
+        bunte Wäsche
+        <img
+          class="variant-info__product"
+          alt=""
+          src="assets/product/Soap_bunt.png"
+        />
+      </div>
+      <div class="variant-info__title variant-info__title--red text--upper">
+        rote Wäsche
+        <img
+          class="variant-info__product"
+          alt=""
+          src="assets/product/Soap_rot.png"
+        />
+      </div>
+      <div
+        class="variant-info__description variant-info__description--white text--main"
+      >
+        Deine weißen Hemden könnten auch einen Freund gebrauchen. Beim
+        Vorstellungsgespräch, beim nächsten Date - auf Fisherman's Friend ist
+        jetzt doppelt Verlass: für den doppelt guten Eindruck! Fisherman's
+      </div>
+      <div
+        class="variant-info__description variant-info__description--white text--main"
+      >
+        Freshener "Helle Wäsche" nimmt sich deine besten Teile vor und wäscht
+        sie mit voller Kraft - bis sie dich (und deinen Chef) vor Frische
+        umhauen!
+      </div>
+      <div
+        class="variant-info__description variant-info__description--lorem text--main"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora harum
+        in aliquid rem fugit iure, distinctio quam dolorem atque eligendi, ut
+        porro, dolorum officiis eos ea aperiam consequuntur pariatur vero?
+      </div>
+    </div>
+
+    <!-- Call to action -->
+    <div class="call-to-action">
+      <div class="call-to-action__content view-width">
+        <div class="call-to-action__control-container">
+          <div class="stripes half-active recolor" color="purple"></div>
+          <div class="call-to-action__button-layout">
+            <div
+              class="call-to-action__button button"
+              color="gray"
+              text="jetzt kaufen"
+            ></div>
+          </div>
+        </div>
+        <img
+          class="call-to-action__image"
+          alt="Freunde mit sauberer bunter Kleidung"
+          src="assets/photos/friends_colors.png"
+        />
+      </div>
+    </div>
+
+    <!-- Late product info -->
+    <div class="late-product-info view-height">
+      <div class="late-product-info__quote-section">
+        <div class="late-product-info__quote-avatar-container">
+          <img
+            class="late-product-info__quote-avatar"
+            src="assets/photos/pexels-andrea-piacquadio-3785110.jpg"
+            alt="Foto von zitiertem Mann"
+          />
+        </div>
+        <div class="late-product-info__quote-text recolor" color="purple">
           "Die sind ja voll easy. Und das Ergebnis is' auch umhauend. Nix für
           sensitive Näschen!"
         </div>
       </div>
-      <div class="variant-info__product-section">
+      <div class="late-product-info__product-section">
         <div
           class="floating-text recolor"
-          color="mint"
+          color="purple"
           direction="left"
           seconds-per-word="5"
         >
@@ -183,7 +477,7 @@
         </div>
         <div
           class="floating-text recolor"
-          color="mint"
+          color="purple"
           direction="right"
           seconds-per-word="4"
         >
@@ -194,7 +488,7 @@
         </div>
         <div
           class="floating-text recolor"
-          color="mint"
+          color="purple"
           direction="left"
           seconds-per-word="5"
         >
@@ -205,10 +499,12 @@
           <div class="floating-text__colored">verlässlich</div>
           <div class="floating-text__colored-outline">einfach</div>
         </div>
-        <div class="variant-info__product-container">
-          <div class="variant-info__product">
-            <div class="stripes half-active" color="red"></div>
-          </div>
+        <div class="late-product-info__product-container">
+          <img
+            class="late-product-info__product"
+            alt="Produktverpackung"
+            src="assets/product/packaging_Mint.png"
+          />
         </div>
       </div>
     </div>

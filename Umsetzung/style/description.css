@@ -91,7 +91,7 @@
 .description__laundry-machine {
   position: relative;
 
-  background-image: url("assets/photos/washing_machine.png");
+  background-image: url("../assets/photos/washing_machine.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -130,6 +130,7 @@
     font-size: 60px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 1069px) {
   .description__opener-container {
     grid-area: 1 / 1 / 2 / 11;

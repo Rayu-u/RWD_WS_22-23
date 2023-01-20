@@ -3,84 +3,47 @@
   align-items: center;
   flex-direction: column;
 
+  margin-top: 32px;
+}
+
+.variant-info[color="gray"] > .variant-info__title--dark,
+.variant-info[color="gray"] > .variant-info__title--color,
+.variant-info[color="gray"] > .variant-info__title--red,
+.variant-info[color="gray"] > .variant-info__description--lorem,
+.variant-info[color="black"] > .variant-info__title--white,
+.variant-info[color="black"] > .variant-info__title--color,
+.variant-info[color="black"] > .variant-info__title--red,
+.variant-info[color="black"] > .variant-info__description--white,
+.variant-info[color="purple"] > .variant-info__title--white,
+.variant-info[color="purple"] > .variant-info__title--dark,
+.variant-info[color="purple"] > .variant-info__title--red,
+.variant-info[color="purple"] > .variant-info__description--white,
+.variant-info[color="red"] > .variant-info__title--white,
+.variant-info[color="red"] > .variant-info__title--dark,
+.variant-info[color="red"] > .variant-info__title--color,
+.variant-info[color="red"] > .variant-info__description--white {
+  display: none;
+}
+
+.variant-info__title {
   position: relative;
-  width: 100%;
-}
 
-.variant-info__quote-section {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  margin: 0 32px 32px -32px;
-}
-
-.variant-info__quote-section > * {
-  margin: 32px 0 0 32px;
-}
-
-.variant-info__quote-avatar-container {
-  height: 200px;
-  width: 200px;
-}
-
-.variant-info__quote-avatar {
-  position: relative;
-  top: -13.38px;
-  left: -100px;
-  width: 400px;
-
-  clip-path: ellipse(100px 100px at 50% 40%);
-}
-
-.variant-info__quote-text {
-  color: var(--mint-dark);
-  font-family: "FFGoodWebProCompressed", sans-serif;
-  font-size: 66px;
-  text-transform: uppercase;
-  width: 510px;
-}
-
-.variant-info__quote-text[color="gray"] {
   color: var(--gray);
-}
-
-.variant-info__quote-text[color="black"] {
-  color: var(--black);
-}
-
-.variant-info__quote-text[color="mint"] {
-  color: var(--mint);
-}
-
-.variant-info__quote-text[color="red"] {
-  color: var(--red);
-}
-
-.variant-info__product-section {
-  display: flex;
-  flex-direction: column;
-
-  position: relative;
-  width: 100%;
-}
-
-.variant-info__product-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  font-size: calc(60px + 5 * var(--unit));
+  -webkit-text-stroke: 2px;
+  -webkit-text-fill-color: transparent;
 }
 
 .variant-info__product {
-  position: relative;
-  height: calc(150px + 7.5 * var(--unit));
-  width: calc(200px + 10 * var(--unit));
+  position: absolute;
+  right: calc(-10px - var(--unit));
+  bottom: 0;
+  width: calc(20px + 2 * var(--unit));
+}
+
+.variant-info__description {
+  max-width: 512px;
+
+  font-size: calc(20px);
+  margin-bottom: 32px;
 }
